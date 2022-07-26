@@ -205,7 +205,7 @@ public class MainController implements Initializable {
     }
 
     // open window editIncome
-    public void actionBtnIncome(ActionEvent actionEvent) throws CloneNotSupportedException {
+    public void actionBtnIncome(ActionEvent actionEvent){
 
         Object source = actionEvent.getSource();
 
@@ -478,10 +478,10 @@ public class MainController implements Initializable {
     private void loaderModalWindow() {
         // account
         /*
-           загружаем в начале один раз файл с помощью load и получаем контроллер
+           load the file at the beginning once with load and get the controller
          */
         try {
-            fxmlLoaderAcc.setLocation(getClass().getResource("../fxml/editAccount.fxml"));
+            fxmlLoaderAcc.setLocation(getClass().getResource("/fxml/editAccount.fxml"));
             fxmlEditAccount = fxmlLoaderAcc.load();
             editAccountController = fxmlLoaderAcc.getController();
 
@@ -491,7 +491,7 @@ public class MainController implements Initializable {
 
         // income
         try {
-            fxmlLoaderInc.setLocation(getClass().getResource("../fxml/editIncome.fxml"));
+            fxmlLoaderInc.setLocation(getClass().getResource("/fxml/editIncome.fxml"));
             fxmlEditInc = fxmlLoaderInc.load();
             editIncomeController = fxmlLoaderInc.getController();
 
@@ -501,7 +501,7 @@ public class MainController implements Initializable {
 
         // expense
         try {
-            fxmlLoaderExp.setLocation(getClass().getResource("../fxml/editExpense.fxml"));
+            fxmlLoaderExp.setLocation(getClass().getResource("/fxml/editExpense.fxml"));
             fxmlEditExp = fxmlLoaderExp.load();
             editExpenseController = fxmlLoaderExp.getController();
         } catch (IOException e) {
@@ -565,7 +565,6 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         try {
-//            backupListIncome.addAll(incomeBook.getIncomeList());
             tableIncomeBook.setItems(incomeBook.getIncomeList());
         } catch (Exception e) {
             e.printStackTrace();
@@ -761,12 +760,19 @@ public class MainController implements Initializable {
         }
 
         Expense milk = new Expense("Молоко", 87.2, LocalDate.of(2022, 6, 12), cash);
-        Expense tea = new Expense("Чай", 255.7, LocalDate.of(2022, 7, 6), cash);
         Expense fruit = new Expense("Фрукты", 780, LocalDate.of(2022, 6, 12), debitCard);
+        Expense jeans = new Expense("Джинсы", 3890, LocalDate.of(2022, 6, 22), debitCard);
+        Expense food = new Expense("Продукты", 1070, LocalDate.of(2022, 6, 28), creditCard);
+        Expense tea = new Expense("Чай", 255.7, LocalDate.of(2022, 7, 6), cash);
+        Expense stinks = new Expense("Бытовая химия", 1200, LocalDate.of(2022, 7, 7), debitCard);
+        Expense cinema = new Expense("Кино", 750, LocalDate.of(2022, 7, 9), debitCard);
+        Expense farmersMarket = new Expense("Продукты, фермерский рынок", 945.3, LocalDate.of(2022, 7, 10), cash);
         Expense benzine = new Expense("Бензин", 2100, LocalDate.of(2022, 7, 12), debitCard);
-        Expense electricity = new Expense("Электричество", 1000.2, LocalDate.of(2022, 6, 12), creditCard);
+        Expense carWash = new Expense("Автомойка, полная без багажника", 1500, LocalDate.of(2022, 7, 12), debitCard);
+        Expense electricity = new Expense("Электричество", 1000.2,
+                LocalDate.of(2022, 6, 12), creditCard);
 
-        expenseBook.getExpenseList().addAll(milk, tea, fruit, electricity, benzine);
+        expenseBook.getExpenseList().addAll(milk, fruit, tea,stinks,cinema,farmersMarket, electricity, benzine,jeans,food,carWash);
 
         // account movement
         for (Expense exp : expenseBook.getExpenseList()) {
