@@ -23,7 +23,9 @@ public class ExpenseBook{
         expenseList.remove(expense);
 
         // account movement
-        expense.deleteMove((expense.getAccount()));
+        if(expense.getAccount() != null)
+            expense.deleteMove((expense.getAccount()));
+
     }
 
     public double resultSumExpense() {

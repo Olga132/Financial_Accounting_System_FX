@@ -85,7 +85,7 @@ public class MainController implements Initializable {
     @FXML
     private Button btnRemoveAccount;
 
-    // Item choiceBox addAccount
+    // Item addAccount
     @FXML
     private ChoiceBox<TypeOfAccount> choiceBoxType;
     @FXML
@@ -521,9 +521,9 @@ public class MainController implements Initializable {
         // set format date in table income
         columnDateIncome.setCellFactory(tc -> new TableCell<>() {
             @Override
-            protected void updateItem(LocalDate date, boolean empty) {
-                    super.updateItem(date, empty);
-                    if (empty) {
+            protected void updateItem(LocalDate date, boolean dateIsEmpty) {
+                    super.updateItem(date, dateIsEmpty);
+                    if ( date == null || dateIsEmpty) {
                         setText(null);
                     } else {
                         setText(formatter.format(date));
@@ -537,12 +537,12 @@ public class MainController implements Initializable {
         columnDateExpense.setCellValueFactory(new PropertyValueFactory<>("date"));
         columnAccountExpense.setCellValueFactory(new PropertyValueFactory<>("account"));
 
-        // set format date in table expense and income
+        // set format date in table expense
         columnDateExpense.setCellFactory(tc -> new TableCell<>() {
             @Override
-            protected void updateItem(LocalDate date, boolean empty) {
-                super.updateItem(date, empty);
-                if (empty) {
+            protected void updateItem(LocalDate date, boolean dateIsEmpty) {
+                super.updateItem(date, dateIsEmpty);
+                if ( date == null || dateIsEmpty) {
                     setText(null);
                 } else {
                     setText(formatter.format(date));

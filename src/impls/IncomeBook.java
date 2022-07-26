@@ -20,7 +20,8 @@ public class IncomeBook{
         incomeList.remove(income);
 
         // account movement
-        income.deleteMove((income.getAccount()));
+        if(income.getAccount() != null)
+            income.deleteMove((income.getAccount()));
     }
 
     public double resultSumIncome() {
